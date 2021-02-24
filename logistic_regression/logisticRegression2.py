@@ -166,7 +166,7 @@ while True:
   params=gradDesc(params, samples,y,alfa)
   error = show_errors(params, samples, y)
   epoch = epoch + 1
-  if(oldparams == params or error < 0.01 or epoch > 20000  ):
+  if(oldparams == params or error < 0.01 or epoch > 20000):
     print ("samples:")
     print (samples)
     print ("final params:")
@@ -177,16 +177,23 @@ while True:
 plt.plot(__errors__)
 plt.show()
 
-predYArr = []
+y_pred = []
+y_predRounded = []
 ids = []
 res = 0
 for i in range(len(y_test)):
     res = yPredict(params,test_samples[i])
     print("y prediction: ",res)
+    print("y prediction rounded: ",round(res))
     print("y real: ",y_test[i])
     print("\n")
-    predYArr.append(res)
+    y_pred.append(res)
+    y_predRounded.append(round(res))
     ids.append(i)
+
+
+accuracy = sm. balanced_accuracy_score(y_test, y_predRounded)
+print("Accuracy: ",accuracy)
 print("=======================================================\n")
 print("Query Section\n")
 print("=======================================================\n")
@@ -201,6 +208,7 @@ while True:
     samp = [1,bc,nn,m]
     res = yPredict(params,samp)
     print("y prediction: ",res)
+    print("y prediction rounded: ",round(res))
     print("\n")
 
 
